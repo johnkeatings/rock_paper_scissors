@@ -12,30 +12,62 @@ const computerPlay = () => {
     }   
 }
 
-const playRound = (playerSelection, computerSelection) => {
-    // player makes selection typing in the desired play
-    playerSelection = playerSelection.toLowerCase()
-    computerSelection = computerSelection.toLowerCase()
-    // compare the answer to the randomly generated computer play and return outcome message
-    if (playerSelection === 'rock' && computerSelection === 'rock') {
-        return 'It is a tie!'
-    } else if (playerSelection === 'paper' && computerSelection === 'paper') {
-        return 'It is a tie!'
-    } else if (playerSelection === 'scissors' && computerSelection === 'scissors') {
-        return 'It is a tie!'
-    } else if (playerSelection === 'rock' && computerSelection === 'scissors') {
-        return 'You win!'
-    } else if (playerSelection === 'paper' && computerSelection === 'rock') {
-        return 'You win!'
-    } else if (playerSelection === 'scissors' && computerSelection === 'paper') {
-        return 'You win!'
-    } else if (playerSelection === 'rock' && computerSelection === 'paper') {
-        return 'You lose.'
-    } else if (playerSelection === 'paper' && computerSelection === 'scissors') {
-        return 'You lose.'
-    } else if (playerSelection === 'scissors' && computerSelection === 'rock') {
-        return 'You lose.'
+const game = () => {
+
+    let playerScore = 0
+    let computerScore = 0
+
+    const playRound = (playerSelection, computerSelection) => {
+
+        playerSelection = playerSelection.toLowerCase()
+        computerSelection = computerSelection.toLowerCase()
+
+
+        if (playerSelection === 'rock' && computerSelection === 'rock') {
+            return 'It is a tie!'
+        } else if (playerSelection === 'paper' && computerSelection === 'paper') {
+            return 'It is a tie!'
+        } else if (playerSelection === 'scissors' && computerSelection === 'scissors') {
+            return 'It is a tie!'
+        } else if (playerSelection === 'rock' && computerSelection === 'scissors') {
+            playerScore = playerScore += 1
+            return 'You win!'
+        } else if (playerSelection === 'paper' && computerSelection === 'rock') {
+            playerScore = playerScore += 1
+            return 'You win!'
+        } else if (playerSelection === 'scissors' && computerSelection === 'paper') {
+            playerScore = playerScore += 1
+            return 'You win!'
+        } else if (playerSelection === 'rock' && computerSelection === 'paper') {
+            computerScore = computerScore += 1
+            return 'You lose.'
+        } else if (playerSelection === 'paper' && computerSelection === 'scissors') {
+            computerScore = computerScore += 1
+            return 'You lose.'
+        } else if (playerSelection === 'scissors' && computerSelection === 'rock') {
+            computerScore = computerScore += 1
+            return 'You lose.'
+        }
     }
+
+    const message = 'Type rock, paper, or scissors'
+
+    console.log(playRound(prompt(message), computerPlay()))
+    console.log(playRound(prompt(message), computerPlay()))
+    console.log(playRound(prompt(message), computerPlay()))
+    console.log(playRound(prompt(message), computerPlay()))
+    console.log(playRound(prompt(message), computerPlay()))
+    console.log(`Score \n User: ${playerScore} \n Computer: ${computerScore}`)
+
+    if (playerScore > computerScore) {
+        result = 'You win the round!'
+    } else if (computerScore > playerScore) {
+        result = 'You have lost the round.'
+    } else {
+        result = 'You have tied the round!'
+    }
+    console.log(result)
 }
 
-console.log(playRound('Rock', computerPlay()))
+game()
+
