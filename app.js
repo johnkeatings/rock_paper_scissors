@@ -12,7 +12,30 @@ const computerPlay = () => {
     }   
 }
 
-console.log(computerPlay())
+const playRound = (playerSelection, computerSelection) => {
+    // player makes selection typing in the desired play
+    playerSelection = playerSelection.toLowerCase()
+    computerSelection = computerSelection.toLowerCase()
+    // compare the answer to the randomly generated computer play and return outcome message
+    if (playerSelection === 'rock' && computerSelection === 'rock') {
+        return 'It is a tie!'
+    } else if (playerSelection === 'paper' && computerSelection === 'paper') {
+        return 'It is a tie!'
+    } else if (playerSelection === 'scissors' && computerSelection === 'scissors') {
+        return 'It is a tie!'
+    } else if (playerSelection === 'rock' && computerSelection === 'scissors') {
+        return 'You win!'
+    } else if (playerSelection === 'paper' && computerSelection === 'rock') {
+        return 'You win!'
+    } else if (playerSelection === 'scissors' && computerSelection === 'paper') {
+        return 'You win!'
+    } else if (playerSelection === 'rock' && computerSelection === 'paper') {
+        return 'You lose.'
+    } else if (playerSelection === 'paper' && computerSelection === 'scissors') {
+        return 'You lose.'
+    } else if (playerSelection === 'scissors' && computerSelection === 'rock') {
+        return 'You lose.'
+    }
+}
 
-
-
+console.log(playRound('Rock', computerPlay()))
