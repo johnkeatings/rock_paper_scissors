@@ -1,3 +1,5 @@
+const message = 'Type rock, paper, or scissors'
+
 const computerPlay = () => {
     let min = 1
     let max = 4
@@ -50,13 +52,10 @@ const game = () => {
         }
     }
 
-    const message = 'Type rock, paper, or scissors'
+    for (let i = 0; i < 5; i++) {
+        console.log(playRound(prompt(message), computerPlay()))
+    }
 
-    console.log(playRound(prompt(message), computerPlay()))
-    console.log(playRound(prompt(message), computerPlay()))
-    console.log(playRound(prompt(message), computerPlay()))
-    console.log(playRound(prompt(message), computerPlay()))
-    console.log(playRound(prompt(message), computerPlay()))
     console.log(`Score \n User: ${playerScore} \n Computer: ${computerScore}`)
 
     if (playerScore > computerScore) {
