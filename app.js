@@ -1,4 +1,12 @@
-const message = 'Type rock, paper, or scissors'
+const rockButton = document.querySelector('#rock-btn')
+const paperButton = document.querySelector('#paper-btn')
+const scissorsButton = document.querySelector('#scissors-btn')
+const resultsDiv = document.createElement('div')
+const score = document.createElement('p')
+const result = document.createElement('p')
+container.appendChild(resultsDiv)
+resultsDiv.appendChild(score)
+resultsDiv.appendChild(result)
 
 const computerPlay = () => {
     let min = 1
@@ -21,52 +29,59 @@ const game = () => {
 
     const playRound = (playerSelection, computerSelection) => {
 
-        playerSelection = playerSelection.toLowerCase()
         computerSelection = computerSelection.toLowerCase()
 
-
         if (playerSelection === 'rock' && computerSelection === 'rock') {
-            return 'It is a tie!'
+            result.textContent = 'It is a tie!'
         } else if (playerSelection === 'paper' && computerSelection === 'paper') {
-            return 'It is a tie!'
+            result.textContent = 'It is a tie!'
         } else if (playerSelection === 'scissors' && computerSelection === 'scissors') {
-            return 'It is a tie!'
+            result.textContent = 'It is a tie!'
         } else if (playerSelection === 'rock' && computerSelection === 'scissors') {
             playerScore = playerScore += 1
-            return 'You win!'
+            result.textContent = 'You win!'
         } else if (playerSelection === 'paper' && computerSelection === 'rock') {
             playerScore = playerScore += 1
-            return 'You win!'
+            result.textContent = 'You win!'
         } else if (playerSelection === 'scissors' && computerSelection === 'paper') {
             playerScore = playerScore += 1
-            return 'You win!'
+            result.textContent = 'You win!'
         } else if (playerSelection === 'rock' && computerSelection === 'paper') {
             computerScore = computerScore += 1
-            return 'You lose.'
+            result.textContent = 'You lose.'
         } else if (playerSelection === 'paper' && computerSelection === 'scissors') {
             computerScore = computerScore += 1
-            return 'You lose.'
+            result.textContent = 'You lose.'
         } else if (playerSelection === 'scissors' && computerSelection === 'rock') {
             computerScore = computerScore += 1
-            return 'You lose.'
+            result.textContent = 'You lose.'
         }
+
+        if (playerScore === 5 && computerScore < 5) {
+            result.textContent = 'You win the round!'
+        } else if (computerScore === 5 && playerScore < 5) {
+            result.textContent = 'You have lost the round.'
+        }
+        
     }
 
-    for (let i = 0; i < 5; i++) {
-        console.log(playRound(prompt(message), computerPlay()))
-    }
+    rockButton.addEventListener('click', (e) => {
+        playerSelection = 'rock'
+        playRound(playerSelection, computerPlay())
+        score.textContent = `You: ${playerScore} Computer: ${computerScore}`
+    })
 
-    console.log(`Score \n User: ${playerScore} \n Computer: ${computerScore}`)
+    paperButton.addEventListener('click', (e) => {
+        playerSelection = 'paper'
+        playRound(playerSelection, computerPlay())
+        score.textContent = `You: ${playerScore} Computer: ${computerScore}`
+    })
 
-    if (playerScore > computerScore) {
-        result = 'You win the round!'
-    } else if (computerScore > playerScore) {
-        result = 'You have lost the round.'
-    } else {
-        result = 'You have tied the round!'
-    }
-    console.log(result)
+    scissorsButton.addEventListener('click', (e) => {
+        playerSelection = 'scissors'
+        playRound(playerSelection, computerPlay()) 
+        score.textContent = `You: ${playerScore} Computer: ${computerScore}`
+    })
 }
 
 game()
-
