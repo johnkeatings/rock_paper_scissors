@@ -24,6 +24,13 @@ const computerPlay = () => {
     }   
 }
 
+const playAgain = () => {
+    resultsDiv.append(playAgainButton)
+    rockButton.remove()
+    paperButton.remove()
+    scissorsButton.remove()
+}
+
 const game = () => {
 
     let playerScore = 0
@@ -61,16 +68,10 @@ const game = () => {
 
         if (playerScore >= 5 && computerScore < 5) {
             result.textContent = 'You win the round!'
-            resultsDiv.append(playAgainButton)
-            rockButton.remove()
-            paperButton.remove()
-            scissorsButton.remove()
+            playAgain()
         } else if (computerScore >= 5 && playerScore < 5) {
             result.textContent = 'You have lost the round.'
-            resultsDiv.append(playAgainButton)
-            rockButton.remove()
-            paperButton.remove()
-            scissorsButton.remove()
+            playAgain()
         }
 
         playAgainButton.addEventListener('click', (e) => {
