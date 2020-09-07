@@ -1,12 +1,14 @@
 const rockButton = document.querySelector('#rock-btn')
 const paperButton = document.querySelector('#paper-btn')
 const scissorsButton = document.querySelector('#scissors-btn')
+const playAgainButton = document.createElement('button')
 const resultsDiv = document.createElement('div')
 const score = document.createElement('p')
 const result = document.createElement('p')
 container.appendChild(resultsDiv)
 resultsDiv.appendChild(score)
 resultsDiv.appendChild(result)
+playAgainButton.textContent = 'Play Again?'
 
 const computerPlay = () => {
     let min = 1
@@ -57,12 +59,27 @@ const game = () => {
             result.textContent = 'You lose.'
         }
 
-        if (playerScore === 5 && computerScore < 5) {
+        if (playerScore >= 5 && computerScore < 5) {
             result.textContent = 'You win the round!'
-        } else if (computerScore === 5 && playerScore < 5) {
+            resultsDiv.append(playAgainButton)
+            rockButton.remove()
+            paperButton.remove()
+            scissorsButton.remove()
+        } else if (computerScore >= 5 && playerScore < 5) {
             result.textContent = 'You have lost the round.'
+            resultsDiv.append(playAgainButton)
+            rockButton.remove()
+            paperButton.remove()
+            scissorsButton.remove()
         }
-        
+
+        playAgainButton.addEventListener('click', (e) => {
+            playerScore = 0
+            computerScore = 0
+            e.preventDefault()
+            window.location.reload()
+            playAgainButton.remove()
+        })
     }
 
     rockButton.addEventListener('click', (e) => {
@@ -82,6 +99,7 @@ const game = () => {
         playRound(playerSelection, computerPlay()) 
         score.textContent = `You: ${playerScore} Computer: ${computerScore}`
     })
+
 }
 
 game()
